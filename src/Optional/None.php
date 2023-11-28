@@ -28,5 +28,4 @@ final class None implements Optional
     {
         return $this;
     }
-
 }

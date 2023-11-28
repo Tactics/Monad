@@ -8,7 +8,6 @@ use Tactics\Monad\Optional;
 
 final class Some implements Optional
 {
-
     private function __construct(
         protected readonly mixed $value
     ) {
@@ -36,5 +35,4 @@ final class Some implements Optional
     {
         return self::of($fn($this->value));
     }
-
 }

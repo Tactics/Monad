@@ -9,7 +9,7 @@ use Traversable;
 
 interface Contexts extends Traversable
 {
-    public function get(string $class) : Optional;
+    public function get(string $class): Optional;
 
     public function add(Context $context): Contexts;
 }

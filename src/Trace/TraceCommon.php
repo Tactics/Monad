@@ -9,7 +9,8 @@ final class TraceCommon implements Trace
     private function __construct(
         private readonly string $message,
         private readonly int $at
-    ){}
+    ) {
+    }
 
     public static function from(
         string $message,

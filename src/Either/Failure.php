@@ -16,7 +16,6 @@ use ValueError;
 
 final class Failure implements Either
 {
-
     private function __construct(
         protected readonly string $message,
         protected readonly string|int $code,
@@ -28,11 +27,10 @@ final class Failure implements Either
     public static function dueTo(
         string $message,
         string|int $code = 0,
-        ?Trace $trace = NULL,
-        ?Traces $traces = NULL,
-        ?Contexts $contexts = NULL
-    ) : Failure
-    {
+        ?Trace $trace = null,
+        ?Traces $traces = null,
+        ?Contexts $contexts = null
+    ): Failure {
         // Add Failure traces as last item.
         $traces = $traces ?? TraceCollection::empty();
         if ($trace) {
@@ -93,7 +91,3 @@ final class Failure implements Either
         return $this;
     }
 }
-
-
-
-

@@ -14,5 +14,4 @@ interface MonadCommon
     public function unwrap(): mixed;
 
     public function map(callable $fn): MonadCommon;
-
 }

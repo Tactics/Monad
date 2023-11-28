@@ -6,7 +6,7 @@ namespace Tactics\Monad\Trace;
 
 interface Trace
 {
-    public function read() : string;
+    public function read(): string;
 
-    public function at() : int;
+    public function at(): int;
 }

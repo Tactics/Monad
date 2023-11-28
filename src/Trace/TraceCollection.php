@@ -11,7 +11,8 @@ final class TraceCollection implements Traces
     protected array $traces = [];
 
     private function __construct(
-    ) {}
+    ) {
+    }
 
     public static function empty(): self
     {
@@ -20,7 +21,7 @@ final class TraceCollection implements Traces
 
     public function add(Trace $trace): self
     {
-        $new = clone($this);
+        $new = clone ($this);
         $values = [...$this->traces, $trace];
         $new->traces = $values;
         return $new;
@@ -35,5 +36,4 @@ final class TraceCollection implements Traces
             yield $trace;
         }
     }
-
 }

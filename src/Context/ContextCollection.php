@@ -13,21 +13,23 @@ final class ContextCollection implements Contexts
 {
     protected array $contexts = [];
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     public static function empty(): self
     {
         return new self();
     }
 
-    public function get(string $class) : Optional
+    public function get(string $class): Optional
     {
         return $this->contexts[$class] ? Some::of($this->contexts[$class]) : None::of();
     }
 
     public function add(Context $context): ContextCollection
     {
-        $new = clone($this);
+        $new = clone ($this);
         $contexts = $this->contexts;
         $contexts[get_class($context)] = $context;
         $new->contexts = $contexts;
@@ -43,5 +45,4 @@ final class ContextCollection implements Contexts
             yield $context;
         }
     }
-
 }
