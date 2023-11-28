@@ -10,7 +10,7 @@ use Tactics\Monad\Trace\Traces;
 /**
  * All-in Either for the most common cases.
  */
-interface Writer extends Carrier
+interface Writer
 {
     public function withTrace(Trace $trace): Writer;
 

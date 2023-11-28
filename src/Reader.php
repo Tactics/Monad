@@ -9,9 +9,9 @@ use Tactics\Monad\Context\Context;
 /**
  * Monad including reader functionality.
  */
-interface Reader extends Carrier
+interface Reader
 {
     public function withContext(Context $context): Reader;
 
-    public function context(string $class): ?Context;
+    public function context(string $class): Optional;
 }

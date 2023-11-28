@@ -14,7 +14,7 @@ use Tactics\Monad\Either\Success;
  * In this interface, we restrict the common monad to these
  * two types.
  */
-interface Either extends MonadCommon, Carrier
+interface Either extends Writer, Reader, Carrier
 {
     public function bind(callable $fn): Success|Failure;
 
@@ -22,6 +22,5 @@ interface Either extends MonadCommon, Carrier
 
     public function map(callable $fn): Success|Failure;
 
-    public function lift(mixed $value): Carrier;
-
+    public function lift(mixed $value): Success|Failure;
 }
