@@ -1,6 +1,6 @@
 {
-    "name": "tactics/foo",
-    "description": "foo",
+    "name": "tactics/monad",
+    "description": " Utilities to help ease use of monads ",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -21,13 +21,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Tactics\\Foo\\": "src"
+            "Tactics\\Monad\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tactics\\Foo\\": "tests",
-            "Tactics\\Foo\\Benchmarks\\": "benchmarks"
+            "Tactics\\Monad\\": "tests",
+            "Tactics\\Monad\\Benchmarks\\": "benchmarks"
         }
     },
     "scripts": {

@@ -1,7 +1,7 @@
-[project-name]: Foo
-[project-url]: https://github.com/Tactics/Foo
-[project-build]: https://github.com/Tactics/Foo/actions/workflows/quality_assurance.yaml/badge.svg
-[project-tests]: https://github.com/Tactics/Foo/blob/main/badge-coverage.svg
+[project-name]: Monad
+[project-url]: https://github.com/Tactics/Monad
+[project-build]: https://github.com/Tactics/Monad/actions/workflows/quality_assurance.yaml/badge.svg
+[project-tests]: https://github.com/Tactics/Monad/blob/main/badge-coverage.svg
 
 # Foo
 ![Build][project-build]
@@ -27,7 +27,7 @@ since this is a private package hosted on our own Composer repository generator 
 Then run the following command
 
 ``` bash
-$ composer require tactics/foo
+$ composer require tactics/monad
 ```
 
 ## Dependencies
