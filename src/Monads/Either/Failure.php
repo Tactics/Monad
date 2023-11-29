@@ -28,10 +28,10 @@ final class Failure implements Either, Throwable
     public static function dueTo(
         string $message,
         int $code,
-        Throwable|null $previous = NULL,
-        Trace|null $trace = NULL,
-        Traces|null $traces = NULL,
-        Contexts|null $contexts = NULL,
+        Throwable|null $previous = null,
+        Trace|null $trace = null,
+        Traces|null $traces = null,
+        Contexts|null $contexts = null,
     ): Failure {
         $exception = new Exception(
             message: $message,
