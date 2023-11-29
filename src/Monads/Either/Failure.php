@@ -9,7 +9,7 @@ use Tactics\Monad\Context\Context;
 use Tactics\Monad\Context\ContextCollection;
 use Tactics\Monad\Context\Contexts;
 use Tactics\Monad\Either;
-use Tactics\Monad\Error;
+use Tactics\Monad\FailureError;
 use Tactics\Monad\Optional;
 use Tactics\Monad\Trace\Trace;
 use Tactics\Monad\Trace\TraceCollection;
@@ -17,13 +17,14 @@ use Tactics\Monad\Trace\Traces;
 use Throwable;
 use ValueError;
 
-final class Failure implements Either, Error
+final class Failure extends FailureError implements Either
 {
     private function __construct(
         protected readonly Throwable $exception,
         protected Traces $traces,
         protected Contexts $contexts
     ) {
+        parent::__construct($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
     }
 
     public static function dueTo(
