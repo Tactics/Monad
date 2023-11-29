@@ -22,7 +22,7 @@ final class Success implements Either
     ) {
     }
 
-    public static function of(mixed $value, ?Traces $traces, ?Contexts $contexts): Success
+    public static function of(mixed $value, ?Traces $traces = NULL, ?Contexts $contexts = NULL): Success
     {
         return new self(
             value: $value,
