@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tactics\Monad;
 
-use Tactics\Monad\Optional\None;
-use Tactics\Monad\Optional\Some;
+use Tactics\Monad\Monads\Optional\None;
+use Tactics\Monad\Monads\Optional\Some;
 
 /**
  * Maybe Monad (Optional)

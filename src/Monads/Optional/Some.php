@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tactics\Monad\Optional;
+namespace Tactics\Monad\Monads\Optional;
 
 use Tactics\Monad\Optional;
 

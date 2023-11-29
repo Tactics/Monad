@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tactics\Monad\Either;
+namespace Tactics\Monad\Monads\Either;
 
+use Exception;
 use Tactics\Monad\Context\Context;
 use Tactics\Monad\Context\ContextCollection;
 use Tactics\Monad\Context\Contexts;
@@ -12,25 +13,39 @@ use Tactics\Monad\Optional;
 use Tactics\Monad\Trace\Trace;
 use Tactics\Monad\Trace\TraceCollection;
 use Tactics\Monad\Trace\Traces;
+use Throwable;
 use ValueError;
 
-final class Failure implements Either
+final class Failure implements Either, Throwable
 {
     private function __construct(
-        protected readonly string $message,
-        protected readonly string|int $code,
+        protected readonly Throwable $exception,
         protected Traces $traces,
         protected Contexts $contexts
     ) {
     }
 
+    public static function from(
+        Throwable $exception,
+        Traces $traces,
+        Contexts $contexts
+    ) {
+    }
+
     public static function dueTo(
         string $message,
-        string|int $code = 0,
-        ?Trace $trace = null,
-        ?Traces $traces = null,
-        ?Contexts $contexts = null
+        int $code,
+        Throwable|null $previous,
+        Trace|null $trace,
+        Traces|null $traces,
+        Contexts|null $contexts
     ): Failure {
+        $exception = new Exception(
+            message: $message,
+            code: $code,
+            previous: $previous
+        );
+
         // Add Failure traces as last item.
         $traces = $traces ?? TraceCollection::empty();
         if ($trace) {
@@ -38,8 +53,7 @@ final class Failure implements Either
         }
 
         return new Failure(
-            message: $message,
-            code: $code,
+            exception: $exception,
             traces: $traces,
             contexts: $contexts ?? ContextCollection::empty()
         );
@@ -89,5 +103,45 @@ final class Failure implements Either
     public function lift($value): Failure
     {
         return $this;
+    }
+
+    public function getMessage(): string
+    {
+        return $this->exception->getMessage();
+    }
+
+    public function getCode()
+    {
+        return $this->exception->getCode();
+    }
+
+    public function getFile(): string
+    {
+        return $this->exception->getFile();
+    }
+
+    public function getLine(): int
+    {
+        return $this->exception->getLine();
+    }
+
+    public function getTrace(): array
+    {
+        return $this->exception->getTrace();
+    }
+
+    public function getTraceAsString(): string
+    {
+        return $this->exception->getTraceAsString();
+    }
+
+    public function getPrevious(): ?Throwable
+    {
+        return $this->exception->getPrevious();
+    }
+
+    public function __toString()
+    {
+        return $this->exception->__toString();
     }
 }

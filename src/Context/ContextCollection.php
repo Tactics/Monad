@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Tactics\Monad\Context;
 
 use Generator;
+use Tactics\Monad\Monads\Optional\None;
+use Tactics\Monad\Monads\Optional\Some;
 use Tactics\Monad\Optional;
-use Tactics\Monad\Optional\None;
-use Tactics\Monad\Optional\Some;
 
 final class ContextCollection implements Contexts
 {

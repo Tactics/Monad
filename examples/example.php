@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Tactics\Monad\Context\Context;
 use Tactics\Monad\Context\ContextCollection;
-use \Tactics\Monad\Either;
-use \Tactics\Monad\Either\Failure;
+use Tactics\Monad\Either;
+use Tactics\Monad\Monads\Either\Failure;
 use Tactics\Monad\Trace\TraceCommon;
 
 /**
@@ -22,11 +22,12 @@ final class Example
                     return $result->lift($first);
                 } catch (Throwable $e) {
                     $contexts = ContextCollection::empty();
-                    $contexts = $contexts->add(ErrorContext::from());
+                    $contexts = $contexts->add(MyCustomErrorContext::from());
+                    return Failure::fromException($e);
+
                     return Failure::dueTo(
-                        message: 'message',
-                        code: 0,
-                        trace: TraceCommon::from('extra trace', time()),
+                        message: '',
+                        code: 2,
                         traces: $result->traces(),
                         contexts: $contexts
                     );

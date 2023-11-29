@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tactics\Monad;
 
-use Tactics\Monad\Either\Failure;
-use Tactics\Monad\Either\Success;
+use Tactics\Monad\Monads\Either\Failure;
+use Tactics\Monad\Monads\Either\Success;
 
 /**
  * Either Monad (Result)

@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Tactics\Monad\Either;
+namespace Tactics\Monad\Monads\Either;
 
-use Tactics\Monad\Carrier;
 use Tactics\Monad\Context\Context;
 use Tactics\Monad\Context\ContextCollection;
 use Tactics\Monad\Context\Contexts;
