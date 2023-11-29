@@ -14,5 +14,4 @@ interface Contexts extends Traversable
     public function add(Context $context): Contexts;
 
     public function remove(string $class): Contexts;
-
 }
