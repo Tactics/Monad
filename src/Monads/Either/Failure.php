@@ -25,13 +25,6 @@ final class Failure implements Either, Throwable
     ) {
     }
 
-    public static function from(
-        Throwable $exception,
-        Traces $traces,
-        Contexts $contexts
-    ) {
-    }
-
     public static function dueTo(
         string $message,
         int $code,
@@ -95,6 +88,14 @@ final class Failure implements Either, Throwable
         return $new;
     }
 
+    public function clearContext(string $class): Failure
+    {
+        $new = clone $this;
+        $contexts = $this->contexts->remove($class);
+        $new->contexts = $contexts;
+        return $new;
+    }
+
     public function context(string $class): Optional
     {
         return $this->contexts->get($class);
@@ -110,7 +111,7 @@ final class Failure implements Either, Throwable
         return $this->exception->getMessage();
     }
 
-    public function getCode()
+    public function getCode(): int
     {
         return $this->exception->getCode();
     }

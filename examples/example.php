@@ -22,12 +22,15 @@ final class Example
                     return $result->lift($first);
                 } catch (Throwable $e) {
                     $contexts = ContextCollection::empty();
-                    $contexts = $contexts->add(MyCustomErrorContext::from());
-                    return Failure::fromException($e);
+
+                    $extra = new MyExtraCustomErrorContext();
+                    $contexts = $contexts->add($extra);
 
                     return Failure::dueTo(
-                        message: '',
-                        code: 2,
+                        message: 'My error',
+                        code: 500,
+                        previous: $e,
+                        trace: TraceCommon::from('Extra trace', time()),
                         traces: $result->traces(),
                         contexts: $contexts
                     );
@@ -38,11 +41,7 @@ final class Example
 }
 
 
-final class ErrorContext implements Context
+final class MyExtraCustomErrorContext implements Context
 {
-    private function __construct(){}
-
-    public static function from(): ErrorContext {
-        return new ErrorContext();
-    }
+    public function __construct(){}
 }

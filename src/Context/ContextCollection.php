@@ -36,6 +36,17 @@ final class ContextCollection implements Contexts
         return $new;
     }
 
+    public function remove(string $class): ContextCollection
+    {
+        $new = clone ($this);
+        $contexts = $this->contexts;
+        if (isset($contexts[$class])) {
+            unset($contexts[$class]);
+        }
+        $new->contexts = $contexts;
+        return $new;
+    }
+
     /**
      * @return Generator<Context>
      */

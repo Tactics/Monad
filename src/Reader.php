@@ -14,4 +14,7 @@ interface Reader
     public function withContext(Context $context): Reader;
 
     public function context(string $class): Optional;
+
+    public function clearContext(string $class): Reader;
+
 }

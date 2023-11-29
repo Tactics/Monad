@@ -84,4 +84,12 @@ final class Success implements Either
     {
         return $this->contexts->get($class);
     }
+
+    public function clearContext(string $class): Success
+    {
+        $new = clone $this;
+        $contexts = $this->contexts->remove($class);
+        $new->contexts = $contexts;
+        return $new;
+    }
 }
