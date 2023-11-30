@@ -107,44 +107,4 @@ final class Failure extends FailureError implements Either
     {
         return $this;
     }
-
-    public function getMessage(): string
-    {
-        return $this->exception->getMessage();
-    }
-
-    public function getCode(): int
-    {
-        return $this->exception->getCode();
-    }
-
-    public function getFile(): string
-    {
-        return $this->exception->getFile();
-    }
-
-    public function getLine(): int
-    {
-        return $this->exception->getLine();
-    }
-
-    public function getTrace(): array
-    {
-        return $this->exception->getTrace();
-    }
-
-    public function getTraceAsString(): string
-    {
-        return $this->exception->getTraceAsString();
-    }
-
-    public function getPrevious(): ?Throwable
-    {
-        return $this->exception->getPrevious();
-    }
-
-    public function __toString()
-    {
-        return $this->exception->__toString();
-    }
 }
