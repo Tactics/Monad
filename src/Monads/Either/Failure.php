@@ -29,7 +29,7 @@ final class Failure extends FailureError implements Either
 
     public static function dueTo(
         string $message,
-        int $code,
+        int $code = 0,
         Throwable|null $previous = null,
         Trace|null $trace = null,
         Traces|null $traces = null,
