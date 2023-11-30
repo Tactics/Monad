@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tactics\Monad\Trace;
 
-use Traversable;
+use IteratorAggregate;
 
-interface Traces extends Traversable
+interface Traces extends IteratorAggregate
 {
     public function add(Trace $trace): Traces;
 }

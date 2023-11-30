@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tactics\Monad\Context;
 
+use IteratorAggregate;
 use Tactics\Monad\Optional;
-use Traversable;
 
-interface Contexts extends Traversable
+interface Contexts extends IteratorAggregate
 {
     public function get(string $class): Optional;
 
