@@ -40,7 +40,7 @@ final class Success implements Either
         );
     }
 
-    public function bind(callable $fn): Success
+    public function bind(callable $fn): Success|Failure
     {
         return $fn($this->value);
     }
