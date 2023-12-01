@@ -44,7 +44,7 @@ final class Failure extends FailureError implements Either
         // Add Failure traces as last item.
         $traces = $traces ?? TraceCollection::empty();
         if ($trace) {
-            $traces->add($trace);
+            $traces = $traces->add($trace);
         }
 
         return new Failure(
@@ -71,10 +71,15 @@ final class Failure extends FailureError implements Either
 
     public function withTrace(Trace $trace): Failure
     {
-        $new = clone $this;
-        $traces = $this->traces->add($trace);
-        $new->traces = $traces;
-        return $new;
+        // Recreation needed since we cannot clone Throwable.
+        return self::dueTo(
+            $this->message,
+            $this->code,
+            $this->exception->getPrevious(),
+            $trace,
+            $this->traces,
+            $this->contexts
+        );
     }
 
     public function traces(): Traces
@@ -84,18 +89,30 @@ final class Failure extends FailureError implements Either
 
     public function withContext(Context $context): Failure
     {
-        $new = clone $this;
+        // Recreation needed since we cannot clone Throwable.
         $contexts = $this->contexts->add($context);
-        $new->contexts = $contexts;
-        return $new;
+        return self::dueTo(
+            $this->message,
+            $this->code,
+            $this->exception->getPrevious(),
+            null,
+            $this->traces,
+            $contexts
+        );
     }
 
     public function clearContext(string $class): Failure
     {
-        $new = clone $this;
+        // Recreation needed since we cannot clone Throwable.
         $contexts = $this->contexts->remove($class);
-        $new->contexts = $contexts;
-        return $new;
+        return self::dueTo(
+            $this->message,
+            $this->code,
+            $this->exception->getPrevious(),
+            null,
+            $this->traces,
+            $contexts
+        );
     }
 
     public function context(string $class): Optional
