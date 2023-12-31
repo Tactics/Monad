@@ -45,6 +45,9 @@ final class Failure extends FailureError implements Either
         $traces = $traces ?? TraceCollection::empty();
         if ($trace) {
             $traces = $traces->add($trace);
+        } else {
+            // Fallback to a common trace of the message when no specfic trace was provided.
+            $traces = $traces->add(TraceCommon::from($message, time()));
         }
 
         return new Failure(
