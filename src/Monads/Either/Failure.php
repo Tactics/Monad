@@ -13,6 +13,7 @@ use Tactics\Monad\FailureError;
 use Tactics\Monad\Optional;
 use Tactics\Monad\Trace\Trace;
 use Tactics\Monad\Trace\TraceCollection;
+use Tactics\Monad\Trace\TraceCommon;
 use Tactics\Monad\Trace\Traces;
 use Throwable;
 use ValueError;
