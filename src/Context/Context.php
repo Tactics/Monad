@@ -6,5 +6,5 @@ namespace Tactics\Monad\Context;
 
 interface Context
 {
-    public function type() : ContextType;
+    public function type(): ContextType;
 }
