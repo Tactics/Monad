@@ -56,4 +56,13 @@ final class ContextCollection implements Contexts
             yield $context;
         }
     }
+
+
+    public function filter(callable $callback): ContextCollection
+    {
+        $new = clone $this;
+        $new->contexts = array_filter($this->contexts, $callback);
+
+        return $new;
+    }
 }

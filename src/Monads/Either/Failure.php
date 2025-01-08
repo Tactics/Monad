@@ -9,6 +9,7 @@ use Tactics\Monad\Context\Context;
 use Tactics\Monad\Context\ContextCollection;
 use Tactics\Monad\Context\Contexts;
 use Tactics\Monad\Either;
+use Tactics\Monad\Fault;
 use Tactics\Monad\FailureError;
 use Tactics\Monad\Optional;
 use Tactics\Monad\Trace\Trace;
@@ -126,6 +127,13 @@ final class Failure extends FailureError implements Either
 
     public function lift($value): Failure
     {
+        return $this;
+    }
+
+    public function fail(
+        Fault $fault,
+        Trace|null $trace = null
+    ): Failure {
         return $this;
     }
 }

@@ -8,10 +8,12 @@ use Tactics\Monad\Context\Context;
 use Tactics\Monad\Context\ContextCollection;
 use Tactics\Monad\Context\Contexts;
 use Tactics\Monad\Either;
+use Tactics\Monad\Fault;
 use Tactics\Monad\Optional;
 use Tactics\Monad\Trace\Trace;
 use Tactics\Monad\Trace\TraceCollection;
 use Tactics\Monad\Trace\Traces;
+use Throwable;
 
 final class Success implements Either
 {
@@ -37,6 +39,23 @@ final class Success implements Either
             value: $value,
             traces: $this->traces,
             contexts: $this->contexts
+        );
+    }
+
+    public function fail(Fault $fault, Trace|null $trace = null): Failure
+    {
+        // Keep only persistent contexts
+        $persistentContexts = $this->contexts->filter(function (Context $context) {
+            return $context->type()->isPersistent();
+        });
+
+        return Failure::dueTo(
+            message: $fault->message,
+            code: $fault->code,
+            previous: $fault->previous,
+            trace: $trace,
+            traces: $this->traces,
+            contexts: $persistentContexts
         );
     }
 
