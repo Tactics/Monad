@@ -14,8 +14,7 @@ class Fault
         string     $message = "",
         int        $code = 0,
         ?Throwable $previous = null,
-    )
-    {
+    ) {
         $this->message = $message;
         $this->code = $code;
         $this->previous = $previous;
@@ -25,8 +24,7 @@ class Fault
         string $message,
         int $code = 0,
         Throwable|null $previous = null,
-    ): Fault
-    {
+    ): Fault {
         return new self(
             message: $message,
             code: $code,
