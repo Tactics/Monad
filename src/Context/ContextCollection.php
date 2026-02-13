@@ -24,7 +24,7 @@ final class ContextCollection implements Contexts
 
     public function get(string $class): Optional
     {
-        return $this->contexts[$class] ? Some::of($this->contexts[$class]) : None::of();
+        return isset($this->contexts[$class]) ? Some::of($this->contexts[$class]) : None::of();
     }
 
     public function add(Context $context): ContextCollection
